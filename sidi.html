@@ -7,6 +7,7 @@
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <style>
     .form-section {
@@ -240,8 +241,8 @@ onValue(billsRef, (snapshot) => {
 
       <p>
         <strong>Phone:</strong> <span class="phone-text">${bill.phone}</span> 
-        <a href="tel:${bill.phone}" class="btn btn-sm btn-outline-primary ms-2">Call</a>
-        <a href="https://wa.me/${bill.phone.replace(/\D/g,'')}" target="_blank" class="btn btn-sm btn-outline-success ms-1">WhatsApp</a>
+        <a href="tel:${bill.phone}" class="btn btn-sm btn-outline-primary ms-2"><i class="fas fa-phone"></i></a>
+        <a href="https://wa.me/${bill.phone.replace(/\D/g,'')}" target="_blank" class="btn btn-sm btn-outline-success ms-1"><i class="fab fa-whatsapp"></i></a>
       </p>
 
       <li><strong>Area:</strong> <span class="area-text">${bill.area}</span> | <strong>Category:</strong> <span class="category-text">${bill.category}</span></li>
@@ -251,21 +252,21 @@ onValue(billsRef, (snapshot) => {
       <p class="desc" ><strong>Description:</strong> <span class="description-text">${bill.description || '-'}</span></p>
 
       <p  class="desc" >
-        <strong>Link:</strong> 
+        <strong>Location:</strong> 
         ${
-          bill.link ? `<a href="${bill.link}" target="_blank" class="btn btn-sm btn-outline-info">Open Link</a>` : '-'
+          bill.link ? `<a href="${bill.link}" target="_blank" class="btn btn-sm btn-outline-info"><i class="fas fa-map-marker-alt"></i></a>` : '-'
         }
       </p>
 
       <strong>Items:</strong>
-      <ul>
+      <ul class="list-group mb-2" >
         ${itemsHtml}
       </ul>
 
       <div class="mt-3">
-        <button class="btn btn-warning btn-sm edit-bill-btn">Edit</button>
-        <button class="btn btn-danger btn-sm ms-2 delete-bill-btn">Delete</button>
-        <button class="btn btn-secondary btn-sm ms-2 screenshot-bill-btn">Download Screenshot</button>
+        <button class="btn btn-warning btn-sm edit-bill-btn"><i class="fas fa-edit"></i></button>
+        <button class="btn btn-danger btn-sm ms-2 delete-bill-btn"><i class="fas fa-trash-alt"></i></button>
+        <button class="btn  btn-sm ms-2 screenshot-bill-btn">📸</button>
       </div>
     `;
 
