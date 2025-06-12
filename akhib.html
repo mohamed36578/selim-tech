@@ -52,7 +52,7 @@
       <button id="copyCustomerListBtn" class="btn btn-outline-success btn-sm mb-3">
         📋 Copy All Customer List Text
       </button>
-      
+      test2
       
       
   </div>
@@ -99,12 +99,16 @@ document.getElementById("copyCustomerListBtn").addEventListener("click", () => {
     return;
   }
 
-  let text = customerListEl.innerText.trim();
+  // Extract the HTML content and replace <br> with \n
+  let html = customerListEl.innerHTML;
 
-  if (!text) {
-    alert("⚠️ Customer list is empty.");
-    return;
-  }
+  // Replace <br> and <div> with newlines (if you're using divs for layout)
+  html = html.replace(/<br\s*\/?>/gi, '\n');
+  html = html.replace(/<\/div>/gi, '\n'); // optional: treat div endings as line breaks
+  html = html.replace(/<[^>]*>/g, '');    // strip all other HTML tags
+
+  // Now it's just plain text with newlines
+  let text = html.trim();
 
   // Remove unwanted words (case-insensitive)
   const forbiddenWords = ['paid', 'edit', 'date', 'note'];
@@ -112,7 +116,7 @@ document.getElementById("copyCustomerListBtn").addEventListener("click", () => {
   text = text.replace(pattern, '');
 
   // Clean extra spaces
-  text = text.replace(/\s{2,}/g, ' ').trim();
+  text = text.replace(/[ ]{2,}/g, ' ').trim();
 
   // Encode for URL
   const encodedText = encodeURIComponent(text);
