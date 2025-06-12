@@ -52,7 +52,7 @@
       <button id="copyCustomerListBtn" class="btn btn-outline-success btn-sm mb-3">
         📋 Copy All Customer List Text
       </button>
-      test2
+      
       
       
   </div>
@@ -116,7 +116,13 @@ document.getElementById("copyCustomerListBtn").addEventListener("click", () => {
   text = text.replace(pattern, '');
 
   // Clean extra spaces
-  text = text.replace(/[ ]{2,}/g, ' ').trim();
+  // Clean up extra spaces from each line
+text = text
+  .split('\n')                        // split text into lines
+  .map(line => line.replace(/\s+/g, ' ').trim()) // collapse spaces per line
+  .filter(line => line.length > 0)   // remove empty lines
+  .join('\n');                       // rejoin lines with clean breaks
+
 
   // Encode for URL
   const encodedText = encodeURIComponent(text);
